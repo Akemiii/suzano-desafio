@@ -6,6 +6,8 @@ import org.suzano.rest.model.CartModelRequest;
 import java.util.List;
 
 public class CartDataFactory {
+
+    private CartDataFactory(){}
     private static final Faker faker = new Faker();
 
     public static CartModelRequest validCart() {

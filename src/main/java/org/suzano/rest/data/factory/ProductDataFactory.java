@@ -4,6 +4,8 @@ import net.datafaker.Faker;
 import org.suzano.rest.model.ProductModelRequest;
 
 public class ProductDataFactory {
+
+    private ProductDataFactory(){}
     private static final Faker faker = new Faker();
 
     public static ProductModelRequest validProduct() {

@@ -6,6 +6,8 @@ import org.suzano.rest.model.UserModelRequest;
 import org.suzano.rest.utils.Manipulation;
 
 public class UserDataFactory {
+
+    private UserDataFactory(){}
     private static final Faker faker = new Faker();
 
     public static UserModelRequest validUser(){
@@ -32,7 +34,7 @@ public class UserDataFactory {
         return createAuthenticatedUserWithInvalidUsername();
     }
 
-    public static AuthModelRequest AuthenticatedUserWithoutUsername() {
+    public static AuthModelRequest authenticatedUserWithoutUsername() {
         return createAuthenticatedUserWithoutUsername();
     }
 
