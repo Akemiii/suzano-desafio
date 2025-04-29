@@ -42,7 +42,7 @@ public class AuthSteps {
 
     @Quando("executo a requisição para realizar autenticação sem informar o campo username")
     public void executoARequisicaoParaRealizarAutenticacaoSemInformarOCampo() {
-        AuthModelRequest authUser = UserDataFactory.AuthenticatedUserWithoutUsername();
+        AuthModelRequest authUser = UserDataFactory.authenticatedUserWithoutUsername();
         shared().setResponse(authClient.doAuthentication(authUser));
     }
 
