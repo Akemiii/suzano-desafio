@@ -8,10 +8,6 @@ import static org.suzano.rest.utils.RequestManager.shared;
 public class CartClient extends BaseClient {
     private static final String CART_ENDPOINT = "/carts";
 
-    public CartClient() {
-        shared().setBaseURI(BASE_URL);
-    }
-
     public Response getCartList() {
         return doGetRequest(CART_ENDPOINT);
     }

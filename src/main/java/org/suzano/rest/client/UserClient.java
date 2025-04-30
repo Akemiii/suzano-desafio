@@ -8,10 +8,6 @@ import static org.suzano.rest.utils.RequestManager.shared;
 public class UserClient extends BaseClient {
     private static final String USERS_ENDPOINT = "/users";
 
-    public UserClient() {
-        shared().setBaseURI(BASE_URL);
-    }
-
     public Response getUserList() {
         return doGetRequest(USERS_ENDPOINT);
     }

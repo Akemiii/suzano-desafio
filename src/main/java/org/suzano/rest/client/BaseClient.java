@@ -12,6 +12,10 @@ public abstract class BaseClient {
     public static final String CONTENT_TYPE = "application/json";
     public static final String PATH_PARAMS = "id";
 
+    protected BaseClient(){
+        shared().setBaseURI(BASE_URL);
+    }
+
     private RequestSpecification baseRequest() {
         return given().spec(shared().getRequest()).contentType(CONTENT_TYPE);
     }

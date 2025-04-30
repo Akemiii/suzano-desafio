@@ -8,10 +8,6 @@ import static org.suzano.rest.utils.RequestManager.shared;
 public class ProductClient extends BaseClient {
     private static final String PRODUCTS_ENDPOINT = "/products";
 
-    public ProductClient() {
-        shared().setBaseURI(BASE_URL);
-    }
-
     public Response getProductList() {
         return doGetRequest(PRODUCTS_ENDPOINT);
     }
