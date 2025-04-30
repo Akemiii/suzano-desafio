@@ -14,8 +14,9 @@ import static org.suzano.rest.utils.RequestManager.shared;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductSteps {
-    public static ProductClient productClient = new ProductClient();
-    public static ProductModelRequest product;
+    public static final ProductClient productClient = new ProductClient();
+    public static final String PRODUCT = "product";
+    private ProductModelRequest product;
     private static final int PRODUCT_ID = 3;
     private static final String TITLE = "Mens Cotton Jacket";
     private static final double PRICE = 55.99;
@@ -45,7 +46,7 @@ public class ProductSteps {
         ProductModelResponse productResponse =
                 shared().getResponse()
                         .as(ProductModelResponse.class);
-        assertAll("product",
+        assertAll(PRODUCT,
                 () -> assertEquals(PRODUCT_ID, productResponse.getId()),
                 () -> assertEquals(TITLE, productResponse.getTitle()),
                 () -> assertEquals(PRICE, productResponse.getPrice())
@@ -63,7 +64,7 @@ public class ProductSteps {
         ProductModelResponse productResponse =
                 shared().getResponse()
                         .as(ProductModelResponse.class);
-        assertAll("product",
+        assertAll(PRODUCT,
                 () -> assertEquals(product.getId(), productResponse.getId()),
                 () -> assertEquals(product.getTitle(), productResponse.getTitle()),
                 () -> assertEquals(product.getDescription(), productResponse.getDescription()),
@@ -90,7 +91,7 @@ public class ProductSteps {
         ProductModelResponse productResponse =
                 shared().getResponse()
                         .as(ProductModelResponse.class);
-        assertAll("product",
+        assertAll(PRODUCT,
                 () -> assertEquals(product.getId(), productResponse.getId()),
                 () -> assertEquals(product.getTitle(), productResponse.getTitle()),
                 () -> assertEquals(product.getDescription(), productResponse.getDescription()),

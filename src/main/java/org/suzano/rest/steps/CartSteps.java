@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.suzano.rest.utils.RequestManager.shared;
 
 public class CartSteps {
-    public static CartClient cartClient = new CartClient();
-    public static CartModelRequest cart;
+    public static final CartClient cartClient = new CartClient();
+    private CartModelRequest cart;
     private static final int CART_ID = 1;
     private static final int USER_ID = 1;
 
@@ -80,8 +80,20 @@ public class CartSteps {
         shared().setResponse(cartClient.putCart(cart, CART_ID));
     }
 
+
+
+    @Quando("realizo a exclusão de um carrinho existente com id {int}")
+    public void realizoAExclusaoDeUmCarrinhoExistenteComId(final int id) {
+        shared().setResponse(cartClient.deleteCart(id));
+    }
+
+    @Quando("realizo a exclusão de um carrinho inexistente com id {int}")
+    public void realizoAExclusaoDeUmCarrinhoInexistenteComId(final int id) {
+        shared().setResponse(cartClient.deleteCart(id));
+    }
+
     @E("os dados do carrinho devem ser atualizados corretamente")
-    public void oCorpoDaRespostaDeveConterOsDadosDoCarrinhoAtualizado() {
+    public void osDadosDoCarrinhoDevemSerAtualizadosCorretamente() {
         CartModelResponse cartResponse =
                 shared().getResponse()
                         .as(CartModelResponse.class);
@@ -91,15 +103,4 @@ public class CartSteps {
                 () -> assertNotNull(cartResponse.getProducts())
         );
     }
-
-    @Quando("realizo a exclusão de um carrinho existente com id {int}")
-    public void realizoAExclusaoDeUmCarrinhoExistenteComId1(final int id) {
-        shared().setResponse(cartClient.deleteCart(id));
-    }
-
-    @Quando("realizo a exclusão de um carrinho inexistente com id {int}")
-    public void realizoAExclusaoDeUmCarrinhoInexistenteComId(final int id) {
-        shared().setResponse(cartClient.deleteCart(id));
-    }
-
 }

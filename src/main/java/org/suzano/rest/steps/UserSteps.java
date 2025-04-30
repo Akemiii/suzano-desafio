@@ -15,8 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.suzano.rest.utils.RequestManager.shared;
 
 public class UserSteps {
-    public static UserClient userClient = new UserClient();
-    public static UserModelRequest user;
+    public static final UserClient userClient = new UserClient();
+    public static final String USER = "user";
+    private UserModelRequest user;
     private static final int USER_ID = 1;
     private static final String USERNAME = "johnd";
     private static final String CITY = "kilcoole";
@@ -46,7 +47,7 @@ public class UserSteps {
         UserModelResponse userResponse =
                 shared().getResponse()
                         .as(UserModelResponse.class);
-        assertAll("user",
+        assertAll(USER,
                 () -> assertEquals(USER_ID, userResponse.getId()),
                 () -> assertEquals(USERNAME, userResponse.getUsername()),
                 () -> assertEquals(CITY, userResponse.getAddress().getCity())
@@ -65,7 +66,7 @@ public class UserSteps {
                 shared().getResponse()
                         .as(UserModelResponse.class);
 
-        assertAll("user",
+        assertAll(USER,
                 () -> assertEquals(user.getId(), userResponse.getId()),
                 () -> assertEquals(user.getUsername(), userResponse.getUsername()),
                 () -> assertEquals(user.getEmail(), userResponse.getEmail())
@@ -96,7 +97,7 @@ public class UserSteps {
                 shared().getResponse()
                         .as(UserModelResponse.class);
 
-        assertAll("user",
+        assertAll(USER,
                 () -> assertEquals(user.getId(), userResponse.getId()),
                 () -> assertEquals(user.getUsername(), userResponse.getUsername()),
                 () -> assertEquals(user.getEmail(), userResponse.getEmail())
