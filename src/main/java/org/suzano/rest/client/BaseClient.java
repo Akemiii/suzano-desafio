@@ -1,99 +1,59 @@
 package org.suzano.rest.client;
 
 import io.restassured.response.Response;
-import org.suzano.rest.model.AuthModelRequest;
-import org.suzano.rest.model.CartModelRequest;
-import org.suzano.rest.model.ProductModelRequest;
-import org.suzano.rest.model.UserModelRequest;
-
-import java.util.Map;
-import java.util.Objects;
+import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 import static org.suzano.rest.utils.RequestManager.shared;
 
 public abstract class BaseClient {
-    final String BASE_URL = "https://fakestoreapi.com";
+    static final String BASE_URL = "https://fakestoreapi.com";
+    public static final String ID = "/{id}";
+    public static final String CONTENT_TYPE = "application/json";
+    public static final String PATH_PARAMS = "id";
 
-    public Response doGetReqest(String resource) {
+    private RequestSpecification baseRequest() {
+        return given().spec(shared().getRequest()).contentType(CONTENT_TYPE);
+    }
+
+    public Response doGetRequest(String resource) {
         return
-                given().
-                        spec(shared().getRequest())
+                baseRequest()
                         .when()
                         .get(resource);
     }
 
-    public Response doGetReqest(String resource, int id) {
+    public Response doGetRequest(String resource, int id) {
         return
-                given().
-                        spec(shared().getRequest())
+                baseRequest()
                         .when()
-                        .pathParams("id", id)
-                        .get(resource + "/{id}");
+                        .pathParams(PATH_PARAMS, id)
+                        .get(resource + ID);
     }
 
 
-    public Response doPostRequest(String resource, AuthModelRequest authUser) {
-        return
-                given()
-                        .spec(shared().getRequest())
-                        .contentType("application/json")
-                        .body(authUser)
-                        .when()
-                        .post(resource);
-    }
-
-    public Response doPostRequest(String resource, UserModelRequest user) {
-        return
-                given()
-                        .spec(shared().getRequest())
-                        .contentType("application/json")
-                        .body(user)
-                        .when()
-                        .post(resource);
-    }
-
-    public Response doPostRequest(String resource, ProductModelRequest product) {
-        return
-                given()
-                        .spec(shared().getRequest())
-                        .contentType("application/json")
-                        .body(product)
-                        .when()
-                        .post(resource);
-    }
-
-    public Response doPostRequest(String resource, CartModelRequest cart) {
-        return
-                given()
-                        .spec(shared().getRequest())
-                        .contentType("application/json")
-                        .body(cart)
-                        .when()
-                        .log().all()
-                        .post(resource);
+    public Response doPostRequest(String resource, Object body) {
+        return baseRequest()
+                .body(body)
+                .when()
+                .post(resource);
     }
 
      public Response doPutRequest(String resource, Object body, int id) {
         return
-                given()
-                        .spec(shared().getRequest())
-                        .contentType("application/json")
+                baseRequest()
                         .body(body)
-                        .pathParam("id", id)
+                        .pathParam(PATH_PARAMS, id)
                         .when()
-                        .log().all()
-                        .put(resource + "/{id}");
+                        .put(resource + ID);
     }
 
     public Response doDeleteRequest(String resource, int id) {
         return
-                given()
-                        .spec(shared().getRequest())
-                        .contentType("application/json")
-                        .pathParam("id", id)
+                baseRequest()
+                        .pathParam(PATH_PARAMS, id)
                         .when()
-                        .delete(resource + "/{id}");
+                        .delete(resource + ID);
     }
 
 }
