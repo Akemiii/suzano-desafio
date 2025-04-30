@@ -13,11 +13,11 @@ public class UserClient extends BaseClient {
     }
 
     public Response getUserList() {
-        return doGetReqest(USERS_ENDPOINT);
+        return doGetRequest(USERS_ENDPOINT);
     }
 
     public Response getUser(int id) {
-        return doGetReqest(USERS_ENDPOINT, id);
+        return doGetRequest(USERS_ENDPOINT, id);
     }
 
     public Response postUser(UserModelRequest user) {

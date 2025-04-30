@@ -13,11 +13,11 @@ public class ProductClient extends BaseClient {
     }
 
     public Response getProductList() {
-        return doGetReqest(PRODUCTS_ENDPOINT);
+        return doGetRequest(PRODUCTS_ENDPOINT);
     }
 
     public Response getProduct(int id) {
-        return doGetReqest(PRODUCTS_ENDPOINT, id);
+        return doGetRequest(PRODUCTS_ENDPOINT, id);
     }
 
     public Response postProduct(ProductModelRequest product) {

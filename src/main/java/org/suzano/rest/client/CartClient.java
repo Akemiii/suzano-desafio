@@ -13,11 +13,11 @@ public class CartClient extends BaseClient {
     }
 
     public Response getCartList() {
-        return doGetReqest(CART_ENDPOINT);
+        return doGetRequest(CART_ENDPOINT);
     }
 
     public Response getCart(int id) {
-        return doGetReqest(CART_ENDPOINT, id);
+        return doGetRequest(CART_ENDPOINT, id);
     }
 
     public Response postCart(CartModelRequest cart) {
